@@ -60,16 +60,36 @@ urdu-ocr-codesaviours-si26-eman/
 - Machine Learning
 - Optical Character Recognition (OCR)
 
-## Future Work
+## Why We Need a Better Model
 
-The next stages of this project include:
+We tested Tesseract OCR (with its Urdu language pack) on 5 sample images from our preprocessed dataset to establish a baseline and understand its limitations.
 
-- Image preprocessing
-- Creating ground truth labels (labels.csv)
-- Data cleaning
-- OCR model training
-- Model evaluation
-- Model deployment on Hugging Face
+### Results
+
+**Image 1: book (23).png**
+- Actual text: ہوٹل کا کھانا معیاری اور بہت مزے کا تھا۔
+- Tesseract output: (empty)
+- What went wrong: No output at all — complete failure to detect any text.
+
+**Image 2: news (20).png**
+- Actual text: 73 سالہ شبیر احمد... (long paragraph)
+- Tesseract output: garbled text with wrong characters
+- What went wrong: Attempted to read the text and got the general shape right, but substituted wrong letters throughout, especially where Urdu letters connect/join.
+
+**Image 3: book (11).png**
+- Actual text: ہوٹل کے واش روم گندے تھے۔ ہوٹل کی صفائی...
+- Tesseract output: (empty)
+- What went wrong: No output — same complete failure as Image 1.
+
+**Image 4: screenshot (15).png**
+- Actual text: زبان اردوئے معلّٰی
+- Tesseract output: (empty)
+- What went wrong: No output at all — screenshots may have background clutter or unusual fonts adding difficulty.
+
+**Image 5: news (15).png**
+- Actual text: انہوں نے کہا کہ وفاق کے جل اصلاحات کے لیے صوبوں...
+- Tesseract output: mostly gibberish/disconnected letters, no coherent words
+- What went wrong: Output looks like shapes were detected but not mapped into meaningful Urdu words.
 
 
 ## Author
