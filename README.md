@@ -91,7 +91,22 @@ We tested Tesseract OCR (with its Urdu language pack) on 5 sample images from ou
 - Tesseract output: mostly gibberish/disconnected letters, no coherent words
 - What went wrong: Output looks like shapes were detected but not mapped into meaningful Urdu words.
 
+## Week 3 — Dataset Expansion & Dataset Class
 
+- Expanded the dataset from 103 to 205 images across 6 categories:
+  - Books (printed/Naskh)
+  - Newspaper (Nastaliq)
+  - Screenshots
+  - Signboards
+  - Synthetic
+  - Handwritten
+- Updated `data/labels.csv` with matching transcriptions for all new images
+- Built a PyTorch `UrduOCRDataset` class (`__len__`, `__getitem__`) using `TrOCRProcessor` for image and text preprocessing
+- Verified dataset loads correctly with proper tensor shapes:
+  - `pixel_values`: `torch.Size([3, 384, 384])`
+  - `labels`: `torch.Size([128])`
+- Created train/test split: 164 training samples, 41 testing samples
+- Notebook: `week3_dataset.ipynb`
 ## Author
 
 **Eman Fatima**
