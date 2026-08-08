@@ -36,8 +36,7 @@ uploaded_file = st.file_uploader("Upload Urdu Image", type=["png", "jpg", "jpeg"
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption="Uploaded Image", use_column_width=True)
-
+    st.image(image, caption="Uploaded Image", width="stretch")
     with st.spinner("Extracting text..."):
         pixel_values = processor(image, return_tensors="pt").pixel_values
         with torch.no_grad():
