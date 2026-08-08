@@ -8,16 +8,23 @@ import os
 st.set_page_config(page_title="Urdu OCR — Code Saviours SI-26")
 
 MODEL_DIR = "urdu_ocr_model"
-DRIVE_FOLDER_ID = "1YSn8DiGFFPW2YwcnwenStQsgfkTzoD8T"
 
 @st.cache_resource
 def load_model():
+    # Download model from Google Drive
     if not os.path.exists(MODEL_DIR):
-        gdown.download_folder(id=DRIVE_FOLDER_ID, output=MODEL_DIR, quiet=False)
+        os.makedirs(MODEL_DIR)
+
+    gdown.download_folder(
+        id="1YSn8DiGFFPW2YwcnwenStQsgfkTzoD8T",
+        output=MODEL_DIR,
+        quiet=False
+    )
 
     processor = TrOCRProcessor.from_pretrained(MODEL_DIR)
     model = VisionEncoderDecoderModel.from_pretrained(MODEL_DIR)
     model.eval()
+
     return processor, model
 
 processor, model = load_model()
